@@ -50,7 +50,7 @@
     owner: "{{ nginx_docker_owner }}"
     group: "{{ nginx_docker_group }}"
     mode: "0640"
-  when: nginx_docker_override and nginx_docker_override | length > 0
+  when: nginx_docker_override is defined and nginx_docker_override | length > 0
   notify: restart nginx
 
 - name: Validate Nginx docker compose configuration

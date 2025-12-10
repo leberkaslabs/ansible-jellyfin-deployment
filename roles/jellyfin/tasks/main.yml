@@ -23,7 +23,7 @@
     owner: "{{ jellyfin_docker_owner }}"
     group: "{{ jellyfin_docker_group }}"
     mode: "0640"
-  when: jellyfin_docker_override and jellyfin_docker_override | length > 0
+  when: jellyfin_docker_override is defined and jellyfin_docker_override | length > 0
   notify: restart jellyfin
 
 - name: Validate Jellyfin docker compose configuration
