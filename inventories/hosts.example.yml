@@ -1,0 +1,10 @@
+---
+all:
+  hosts:
+    jellyfin.local:
+      ansible_become: true
+
+  vars:
+    # Jellyfin Docker image to use
+    # Set to the latest available version for up-to-date features
+    jellyfin_docker_image: jellyfin/jellyfin:latest

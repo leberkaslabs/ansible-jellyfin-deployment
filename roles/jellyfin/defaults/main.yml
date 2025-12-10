@@ -1,0 +1,16 @@
+---
+# Jellyfin Docker image to use
+# Set to the latest available version for up-to-date features
+jellyfin_docker_image: jellyfin/jellyfin:latest
+
+# Directory path for Jellyfin deployment
+# Location where Docker Compose files and configs are stored
+jellyfin_docker_path: /opt/jellyfin
+
+# Owner of Jellyfin Docker files and directories
+# Usually set to the root user for full control
+jellyfin_docker_owner: root
+
+# Group associated with Jellyfin Docker files
+# Typically the root group for permissions management
+jellyfin_docker_group: root

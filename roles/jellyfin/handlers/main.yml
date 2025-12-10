@@ -1,0 +1,7 @@
+---
+- name: Restart Jellyfin docker compose deployment
+  ansible.builtin.command:
+    cmd: docker compose --ansi never --progress plain restart
+    chdir: "{{ jellyfin_docker_path }}"
+  changed_when: true
+  listen: restart jellyfin

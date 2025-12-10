@@ -1,0 +1,26 @@
+---
+# Nginx Docker image to use
+# Set to the latest available version for up-to-date features
+nginx_docker_image: nginx:alpine-slim
+
+# Directory path for Nginx deployment
+# Location where Docker Compose files and configs are stored
+nginx_docker_path: /opt/nginx
+
+# Owner of Nginx Docker files and directories
+# Usually set to the root user for full control
+nginx_docker_owner: root
+
+# Group associated with Nginx Docker files
+# Typically the root group for permissions management
+nginx_docker_group: root
+
+# TLS certificate loaded from the inventory directory
+# Required for enabling HTTPS on the Nginx container
+nginx_docker_tls_crt: >-
+  {{ lookup('ansible.builtin.file', inventory_dir ~ '/tls.crt') }}
+
+# Private key corresponding to the TLS certificate above
+# Must exist in the inventory directory before deployment
+nginx_docker_tls_key: >-
+  {{ lookup('ansible.builtin.file', inventory_dir ~ '/tls.key') }}

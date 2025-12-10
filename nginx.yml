@@ -1,0 +1,9 @@
+---
+- name: Setup Nginx
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Include Nginx role
+      ansible.builtin.include_role:
+        name: nginx

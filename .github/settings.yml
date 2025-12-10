@@ -1,0 +1,5 @@
+---
+# https://github.com/apps/settings
+repository:
+  description: Automated Ansible playbooks for deploying containerized Jellyfin media servers.
+  topics: ansible, jellyfin, container, docker

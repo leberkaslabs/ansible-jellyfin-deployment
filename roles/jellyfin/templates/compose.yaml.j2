@@ -1,0 +1,19 @@
+{{ ansible_managed | ansible.builtin.comment }}
+---
+services:
+  jellyfin:
+    image: {{ jellyfin_docker_image }}
+    container_name: jellyfin
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "100m"
+        max-file: "10"
+    ports:
+      - 127.0.0.1:8096:8096
+    volumes:
+      - {{ jellyfin_docker_path }}/cache:/cache:rw
+      - {{ jellyfin_docker_path }}/config:/config:rw
+      - {{ jellyfin_docker_path }}/movies:/movies:rw
+      - /etc/localtime:/etc/localtime:ro

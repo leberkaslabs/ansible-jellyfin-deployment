@@ -1,0 +1,13 @@
+# ignore ansible inventories
+inventories/*
+!inventories/hosts.example.yml
+
+# ignore other files
+__pycache__/
+.DS_Store
+.idea/
+.vscode/
+*.pyc
+*.retry
+*.swo
+*.swp
