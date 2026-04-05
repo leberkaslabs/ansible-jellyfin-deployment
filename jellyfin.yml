@@ -1,9 +1,0 @@
----
-- name: Setup Jellyfin
-  hosts: all
-  gather_facts: false
-
-  tasks:
-    - name: Include Jellyfin role
-      ansible.builtin.include_role:
-        name: jellyfin

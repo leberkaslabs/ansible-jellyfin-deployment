@@ -1,0 +1,23 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: Niclas Spreng
+  description: Setup NGINX with Docker Compose.
+  license: MIT
+  min_ansible_version: "2.15"
+  namespace: leberkaslabs
+  role_name: nginx_docker
+
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - container
+    - docker
+    - nginx

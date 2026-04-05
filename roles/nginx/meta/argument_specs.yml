@@ -1,0 +1,41 @@
+---
+argument_specs:
+  main:
+    author: Niclas Spreng
+    description: Setup NGINX with Docker Compose.
+    short_description: nginx_docker
+    options:
+      nginx_docker_image:
+        type: str
+        required: true
+        description: Nginx Docker image to use.
+      nginx_docker_path:
+        type: str
+        required: true
+        description: Directory path for Nginx deployment.
+      nginx_docker_owner:
+        type: str
+        required: true
+        description: Owner of Nginx Docker files and directories.
+      nginx_docker_group:
+        type: str
+        required: true
+        description: Group associated with Nginx Docker files.
+      nginx_docker_default_config:
+        type: str
+        required: true
+        description: Path to the default NGINX configuration file.
+      nginx_docker_certs:
+        type: list
+        elements: dict
+        required: false
+        description: TLS Certificates for NGINX.
+      nginx_docker_config:
+        type: list
+        elements: dict
+        required: false
+        description: Additional NGINX configuration files.
+      nginx_docker_compose_override:
+        type: dict
+        required: false
+        description: Docker Compose override configuration.

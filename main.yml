@@ -1,0 +1,17 @@
+---
+- name: Deploy Jellyfin Container Stack
+  hosts: all
+  gather_facts: false
+
+  vars_files:
+    - config.yml
+
+  tasks:
+    - name: Deploy NGINX reverse proxy
+      ansible.builtin.include_role:
+        name: nginx
+        rolespec_validate: false
+
+    - name: Deploy Jellyfin
+      ansible.builtin.include_role:
+        name: jellyfin

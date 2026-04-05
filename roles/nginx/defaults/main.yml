@@ -15,12 +15,58 @@ nginx_docker_owner: root
 # Typically the root group for permissions management
 nginx_docker_group: root
 
-# TLS certificate loaded from the inventory directory
-# Required for enabling HTTPS on the Nginx container
-nginx_docker_tls_crt: >-
-  {{ lookup('ansible.builtin.file', inventory_dir ~ '/tls.crt') }}
+# Path to the default NGINX configuration file
+# This should point to a Jinja2 template that will be rendered into the final configuration.
+nginx_docker_default_config: "{{ lookup('ansible.builtin.template', 'default.conf.j2') }}"
 
-# Private key corresponding to the TLS certificate above
-# Must exist in the inventory directory before deployment
-nginx_docker_tls_key: >-
-  {{ lookup('ansible.builtin.file', inventory_dir ~ '/tls.key') }}
+# TLS Certificates for NGINX
+# These will be placed inside the container under /etc/nginx/ssl.
+nginx_docker_certs: []
+  # TLS certificate loaded from the inventory directory
+  # Required for enabling HTTPS on the Nginx container
+  # - name: tls.crt
+  #   content: "{{ lookup('ansible.builtin.file', inventory_dir ~ '/tls.crt') }}"
+
+  # TLS certificate loaded from the inventory directory
+  # Required for enabling HTTPS on the Nginx container
+  # - name: tls.key
+  #   content: "{{ lookup('ansible.builtin.file', inventory_dir ~ '/tls.key') }}"
+
+# Additional NGINX configuration files
+# This section allows you to specify extra Nginx configuration files that will be copied into the container.
+# Each file should have a name ending in '.conf', as Nginx will only load files with this extension.
+nginx_docker_config: []
+  # - name: jellyfin.conf
+  #   content: |-
+  #     server {
+  #         listen 443 ssl;
+  #         listen [::]:443 ssl;
+  #
+  #         server_name _;
+  #
+  #         ssl_certificate /etc/nginx/ssl/tls.crt;
+  #         ssl_certificate_key /etc/nginx/ssl/tls.key;
+  #
+  #         client_max_body_size 525M;
+  #
+  #         location / {
+  #             proxy_http_version 1.1;
+  #             proxy_set_header Upgrade $http_upgrade;
+  #             proxy_set_header Connection $connection_upgrade;
+  #
+  #             proxy_set_header Host $host;
+  #             proxy_set_header X-Real-IP $remote_addr;
+  #             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  #             proxy_set_header X-Forwarded-Proto $scheme;
+  #
+  #             proxy_pass http://127.0.0.1:8096;
+  #         }
+  #     }
+
+# Docker Compose override configuration (optional)
+# Allows you to specify overrides for the Docker Compose setup.
+# This can be customized per environment if needed.
+nginx_docker_compose_override: {}
+  # services:
+  #   nginx:
+  #     container_name: nginx-1

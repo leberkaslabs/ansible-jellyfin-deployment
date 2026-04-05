@@ -19,18 +19,12 @@ Before running the playbooks, prepare the inventory and configuration files.
     cp inventories/hosts.example.yml inventories/hosts.yml
     ```
 
-2. Run the Ansible playbooks:
+2. Run the Ansible playbook:
 
     ```bash
-    # Setup Jellyfin
-    ansible-playbook jellyfin.yml -i inventories/hosts.yml
-
-    # Setup Nginx
-    ansible-playbook nginx.yml -i inventories/hosts.yml
+    ansible-playbook main.yml
     ```
 
 ## License
 
-Copyright © 2025 Niclas Spreng
-
-Licensed under the [MIT license](LICENSE).
+Copyright (c) 2025 Niclas Spreng
