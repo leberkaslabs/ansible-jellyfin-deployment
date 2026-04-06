@@ -1,7 +1,7 @@
 ---
 name: Ansible Lint
 
-on:
+'on':
   push:
     branches:
       - main
@@ -16,10 +16,11 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
+          # yamllint disable-line rule:quoted-strings
           python-version: '3.x'
 
       - name: Install Python dependencies
         run: pip3 install ansible ansible-lint
 
       - name: Run Ansible Lint
-        run: ansible-lint
+        run: ansible-lint --offline
